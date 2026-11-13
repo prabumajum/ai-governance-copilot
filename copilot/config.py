@@ -16,6 +16,11 @@ except ImportError:
 # Change it without touching code, e.g. MODEL="google_genai:gemini-3.6-flash"
 MODEL = os.getenv("MODEL", "google_genai:gemini-3.8-flash")
 
+# Backup models, tried in order if the main one is overloaded (503) or fails.
+FALLBACK_MODELS = [m.strip() for m in os.getenv(
+    "FALLBACK_MODELS", "google_genai:gemini-3.6-flash,google_genai:gemini-3.5-flash-lite"
+).split(",") if m.strip() and m.strip() != MODEL]
+
 # Embedding model used to turn text into vectors (runs locally, no API key needed).
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "BAAI/bge-small-en-v1.5")
 

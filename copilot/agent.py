@@ -59,8 +59,14 @@ def build_graph(model=None):
     """Assemble and compile the graph. Pass a fake `model` in tests to run offline."""
     if model is None:
         from langchain.chat_models import init_chat_model
-        model = init_chat_model(config.MODEL, temperature=0, max_retries=2, timeout=60)
-    model_with_tools = model.bind_tools(TOOLS)
+
+        def load(name):
+            return init_chat_model(name, temperature=0, max_retries=1, timeout=60).bind_tools(TOOLS)
+
+        # Resilience: if the main model is busy (e.g. 503 high demand), try the backups in order.
+        model_with_tools = load(config.MODEL).with_fallbacks([load(m) for m in config.FALLBACK_MODELS])
+    else:
+        model_with_tools = model.bind_tools(TOOLS)
 
     def input_guard(state: State):
         last = state["messages"][-1]
