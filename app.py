@@ -1,4 +1,5 @@
 """Streamlit chat UI.   Run:  streamlit run app.py"""
+import os
 import uuid
 
 import streamlit as st
@@ -23,6 +24,17 @@ with st.sidebar:
     if st.button("New conversation", icon=":material/refresh:"):
         st.session_state.clear()
         st.rerun()
+
+# On Streamlit Cloud, copy the key from Secrets into the environment if needed
+# (also handles a key placed under a [section] heading in the Secrets box).
+try:
+    for name in ("GOOGLE_API_KEY", "GEMINI_API_KEY"):
+        value = st.secrets.get(name) or next(
+            (sec[name] for sec in st.secrets.values() if hasattr(sec, "get") and sec.get(name)), None)
+        if value and not os.getenv(name):
+            os.environ[name] = str(value).strip()
+except Exception:  # no secrets file (e.g. running locally with .env)
+    pass
 
 if not config.has_llm_key():
     st.warning("No Gemini API key found. Get a free key at https://aistudio.google.com/apikey "
