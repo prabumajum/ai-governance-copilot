@@ -1,8 +1,8 @@
 # AI Governance Copilot
 
-[![CI](https://github.com/<your-github-username>/ai-governance-copilot/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-github-username>/ai-governance-copilot/actions/workflows/ci.yml)
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://<your-app-name>.streamlit.app)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/<your-github-username>/ai-governance-copilot)
+[![CI](https://github.com/prabumajum/ai-governance-copilot/actions/workflows/ci.yml/badge.svg)](https://github.com/prabumajum/ai-governance-copilot/actions/workflows/ci.yml)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ai-governance-copilot.streamlit.app)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/prabumajum/ai-governance-copilot)
 
 The AI Governance Copilot is a small **agentic RAG assistant** for AI governance, risk and compliance work. It does three jobs:
 
@@ -57,7 +57,7 @@ Click the **Open in GitHub Codespaces** badge above. When it asks for `GOOGLE_AP
 
 ### Option 3: your own computer
 ```bash
-git clone https://github.com/<your-github-username>/ai-governance-copilot.git
+git clone https://github.com/prabumajum/ai-governance-copilot.git
 cd ai-governance-copilot
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
