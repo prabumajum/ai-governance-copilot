@@ -88,7 +88,7 @@ if prompt:
                 result = run_turn(graph, prompt, st.session_state.thread_id)
             except Exception as error:  # show a helpful message instead of a stack trace
                 st.error(f"The model call failed: {error}\n\nIf the model name is not found or "
-                         "the free quota is used up, set MODEL (e.g. `google_genai:gemini-2.5-flash`) "
+                         "the free quota is used up, set MODEL (e.g. `google_genai:gemini-3.6-flash`) "
                          "in your secrets and retry in a minute.")
                 st.stop()
         st.markdown(result["answer"])

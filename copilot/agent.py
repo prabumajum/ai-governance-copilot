@@ -59,7 +59,7 @@ def build_graph(model=None):
     """Assemble and compile the graph. Pass a fake `model` in tests to run offline."""
     if model is None:
         from langchain.chat_models import init_chat_model
-        model = init_chat_model(config.MODEL, temperature=0)
+        model = init_chat_model(config.MODEL, temperature=0, max_retries=2, timeout=60)
     model_with_tools = model.bind_tools(TOOLS)
 
     def input_guard(state: State):
