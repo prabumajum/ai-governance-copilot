@@ -1,7 +1,7 @@
 # AI Governance Copilot
 
 [![CI](https://github.com/prabumajum/ai-governance-copilot/actions/workflows/ci.yml/badge.svg)](https://github.com/prabumajum/ai-governance-copilot/actions/workflows/ci.yml)
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ai-governance-copilot.streamlit.app)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ai-governance-copilot-prabu.streamlit.app)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/prabumajum/ai-governance-copilot)
 
 The AI Governance Copilot is a small **agentic RAG assistant** for AI governance, risk and compliance work. It does three jobs:
