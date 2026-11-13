@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:   # "Run workflow" button; also runs the full agent evals if a key is set
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}   # optional repo secret
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Unit tests (guardrails, risk, RAG, offline agent, MCP server)
+        run: pytest -v
+      - name: Retrieval evals (RAG hit@4 must be at least 80%)
+        run: python evals/run_evals.py --retrieval-only --min-score 0.8
+      - name: Agent evals with the real LLM (manual runs only)
+        if: github.event_name == 'workflow_dispatch' && env.GOOGLE_API_KEY != ''
+        run: python evals/run_evals.py --min-score 0.7
